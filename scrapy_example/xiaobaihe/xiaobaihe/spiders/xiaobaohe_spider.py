@@ -3,7 +3,7 @@
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.selector import Selector
-from xiaobaihe.items import XiaobaiheItem
+from ..items import XiaobaiheItem
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import sys
 reload(sys)
@@ -20,11 +20,11 @@ class XiaoBaiHeSpider(CrawlSpider) :
         #将读取的网页进行分析
         Rule(SgmlLinkExtractor(allow = ('http://bbs\.nju\.edu\.cn/bbstcon\?board=D_Computer&file=M\.\d+\.A')), callback = 'parse_page')
         )
+    # extract_rule = SgmlLinkExtractor(allow = ('http://bbs\.nju\.edu\.cn/bbstdoc\?board=D_Computer&start=\d+'))
 
-    def parse_page(self, response) :
+    def parse_page(self, response):
         sel = Selector(response)
         item = XiaobaiheItem()
         item['username'] = sel.xpath('//table/tr/td/a/text()').extract()[2]
         item['text'] = sel.xpath("//textarea/text()").extract()[0]
         return item
-

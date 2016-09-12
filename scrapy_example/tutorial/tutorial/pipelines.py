@@ -6,6 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.exceptions import DropItem
 
+
 class TutorialPipeline(object):
     """A pipeline for filtering out items which contain certain words in their
     description"""

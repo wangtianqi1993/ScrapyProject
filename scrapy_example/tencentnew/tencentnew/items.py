@@ -5,12 +5,13 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-from scrapy.item import Item, Field
+import scrapy
+from scrapy.item import Field
 
 
-class XiaobaiheItem(Item):
+class TencentnewItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    username = Field()
-    text = Field()
+    title = Field()
+    content = Field()
     url = Field()
